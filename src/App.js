@@ -4,23 +4,14 @@ import './reset.css';
 import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
-import * as localStore from './localStore';
-import AV from 'leancloud-storage';
-
-var APP_ID = 'sUazgAf7YdKpcVpMF2kbikST-gzGzoHsz';
-var APP_KEY = '3AFclxyoKCfMjxceoadSzyJF';
-
-AV.init({
-	appId: APP_ID,
-	appKey: APP_KEY
-});
+import UserDialog from './UserDialog';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       newTodo: '',
-      todoList: localStore.load('todoList') || []
+      todoList: []
     };
   }
 
@@ -47,12 +38,13 @@ class App extends Component {
         <ol className="todoList">
           {todos}
         </ol>
+        <UserDialog/>
       </div>
     );
   }
 
   componentDidUpdate() {
-	  localStore.save('todoList', this.state.todoList);
+
   }
 
   toggle(e, todo) {
