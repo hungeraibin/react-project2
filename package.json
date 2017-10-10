@@ -2,7 +2,7 @@
   "name": "react-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://hungeraibin.github.io/react-project/build",
+  "homepage": "https://hungeraibin.github.io/react-project2/build",
   "dependencies": {
     "leancloud-storage": "^3.2.1",
     "normalize.css": "^7.0.0",
