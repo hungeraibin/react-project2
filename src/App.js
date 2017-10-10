@@ -5,7 +5,7 @@ import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog';
-import {getCurrentUser} from './leanCloud'
+import {getCurrentUser, signOut} from './leanCloud'
 
 class App extends Component {
   constructor(props) {
@@ -31,7 +31,9 @@ class App extends Component {
     });
     return (
       <div className="App">
-        <h1>{this.state.user.username} Todo</h1>
+        <h1>{this.state.user.username} Todo
+          {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button> : null}
+        </h1>
         <div className="inputWrapper">
           <TodoInput content={this.state.newTodo}
                      onChange={this.changeTitle.bind(this)}
@@ -40,15 +42,26 @@ class App extends Component {
         <ol className="todoList">
           {todos}
         </ol>
-        {this.state.user.id ? null : <UserDialog onSignUp={this.onSignUp.bind(this)}/>}
+        {this.state.user.id ?
+          null :
+          <UserDialog onSignUp={this.onSignUpOrSignIn.bind(this)}
+                      onSignIn={this.onSignUpOrSignIn.bind(this)}/>}
       </div>
     );
   }
-  onSignUp(user) {
+  signOut() {
+    signOut();
+    let stateCopy = JSON.parse(JSON.stringify(this.state));
+    stateCopy.user = {};
+    this.setState(stateCopy);
+  }
+
+	onSignUpOrSignIn(user) {
    let stateCopy = JSON.parse(JSON.stringify(this.state));
    stateCopy.user = user;
    this.setState(stateCopy);
   }
+
   componentDidUpdate() {
 
   }

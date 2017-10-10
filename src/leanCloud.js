@@ -23,6 +23,15 @@ export function signUp(username, password, successFn, errorFn) {
 	return undefined;
 }
 
+export function signIn(username, password, successFn, errorFn) {
+	AV.User.logIn(username, password).then(function (loginedUser) {
+		let user = getUserFromAVUser(loginedUser);
+		successFn.call(null, user);
+	}, function (error) {
+		errorFn.call(null, error);
+	});
+}
+
 export function getCurrentUser() {
 	let user = AV.User.current();
 	if (user) {
@@ -30,6 +39,11 @@ export function getCurrentUser() {
 	} else {
 		return null;
 	}
+}
+
+export function signOut() {
+	AV.User.logOut();
+	return undefined;
 }
 
 function getUserFromAVUser(AVUser) {
