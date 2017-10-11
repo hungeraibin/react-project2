@@ -10,6 +10,53 @@ AV.init({
 
 export default AV;
 
+export const TodoModel = {
+	getByUser(user, successFn, errorFn) {
+		let query = new AV.Query('Todo');
+		query.equalTo('deleted', false);
+		query.find().then((response) => {
+			let array = response.map((t) => {
+				return {id: t.id, ...t.attributes}
+			})
+			successFn.call(null, array);
+		}, (error) => {
+			errorFn && errorFn.call(null, error);
+		})
+	},
+
+	create({status, title, deleted}, successFn, errorFn) {
+		let Todo = AV.Object.extend('Todo');
+		let todo = new Todo();
+		todo.set('title', title);
+		todo.set('status', status);
+		todo.set('deleted', deleted);
+		//单用户权限设置
+		let acl = new AV.ACL();
+		acl.setPublicReadAccess(false);
+		acl.setWriteAccess(AV.User.current(), true);
+		acl.setReadAccess(AV.User.current(), true);
+		todo.setACL(acl);
+
+		todo.save().then(function (response) {
+			successFn.call(null, response.id);
+		}, function (error) {
+			errorFn && errorFn.call(null, error);
+		});
+	},
+	update({id, title, status, delected}, successFn, errorFn) {
+		let todo = AV.Object.createWithoutData('Todo', id);
+		title !== undefined && todo.set('title', title);
+		status !== undefined && todo.set('status', status);
+		delected !== undefined && todo.set('deleted', delected);
+		todo.save().then((response) => {
+			successFn && successFn.call(null);
+		}, (error) => errorFn && errorFn.call(null, error));
+	},
+	destroy(todoId, successFn, errorFn) {
+		TodoModel.update({id: todoId, deleted: true}, successFn, errorFn);
+	}
+}
+
 export function signUp(email, username, password, successFn, errorFn) {
 	var user = new AV.User();
 	user.setUsername(username);
