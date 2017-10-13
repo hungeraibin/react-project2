@@ -12,9 +12,19 @@
 .UserDialog {
   border: 1px solid #aaa;
   border-radius: 4px;
-  min-width: 20em;
-  background-color: white;
+  min-width: 48em;
+  min-height: 34em;
+  background-color: #F2F2F2;
   box-shadow: 0 0 1em hsla(0,0%,0%,0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.UserDialog .signInOrSignUp > nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .UserDialog .signInOrSignUp > nav:first-child {
@@ -25,23 +35,70 @@
 .UserDialog .signInOrSignUp > nav:first-child label {
   margin-left: 2em;
   cursor: pointer;
+  color: #6B97F3;
+  font-size: 1.2em;
+}
+
+.UserDialog .signInOrSignUp > nav:first-child label:hover {
+  color: #42BCFD;
+}
+
+.UserDialog .signInOrSignUp input[type='radio'] {
+  display: none;
+}
+
+.UserDialog .signInOrSignUp > .panes input {
+  width: 16em;
+  height: 1.6em;
+  border: none;
+  border-bottom: 2px solid #F5DDEF;
+  outline: none;
+  padding: 1em 0.2em;
+  color: #333;
 }
 
 .UserDialog .signInOrSignUp > .panes {
-  padding: 0 1em 1em;
+  color: #8D75EA;
+}
+
+.UserDialog .forgotPassword {
+  text-align: center;
 }
 
 .UserDialog .forgotPassword > h3 {
+  margin-left: 2em;
   padding: 1em;
+  color: #6B97F3;
+  cursor: pointer;
+}
+
+.UserDialog .forgotPassword > h3:hover {
+  color: #42BCFD;
 }
 
 .UserDialog .forgotPassword > form {
   padding: 0 1em 1em;
 }
 
+.UserDialog .forgotPassword .row label,a {
+  color: #8D75EA;
+}
+
+.UserDialog .forgotPassword .row input {
+  width: 16em;
+  height: 1.6em;
+  border: none;
+  border-bottom: 2px solid #F5DDEF;
+  outline: none;
+  padding: 1em 0.2em;
+  color: #333;
+}
+
 .UserDialog form > .row {
   display: flex;
   padding: .3em 0;
+  text-align: center;
+  align-items: center;
 }
 
 .UserDialog form > .row > label:first-child {
@@ -49,13 +106,26 @@
 }
 
 .UserDialog form > .row.actions {
-  padding-left: 4em;
+  padding-left: 2em;
   display: flex;
   align-items: center;
 }
 
 .UserDialog form > .row.actions button {
-  margin-right: .5em;
+  display: block;
+  margin: .5em auto;
+  min-width: 4em;
+  min-height: 2em;
+  color: white;
+  background-color: #E34EB4;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  border-radius: 4px;
+}
+
+.UserDialog form > .row.actions button:hover {
+  opacity: 1;
 }
 
 .UserDialog button {

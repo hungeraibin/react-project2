@@ -1,5 +1,7 @@
 body {
-  background-color: #ddd;
+  background: transparent url("//oxquyklcj.bkt.clouddn.com/mountain.jpg") no-repeat 0 0;
+  background-size: cover;
+  background: linear-gradient(to bottom, #42BCFD , #B650E0);
 }
 
 #root {

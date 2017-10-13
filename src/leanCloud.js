@@ -17,7 +17,7 @@ export const TodoModel = {
 		query.find().then((response) => {
 			let array = response.map((t) => {
 				return {id: t.id, ...t.attributes}
-			})
+			});
 			successFn.call(null, array);
 		}, (error) => {
 			errorFn && errorFn.call(null, error);
@@ -55,7 +55,7 @@ export const TodoModel = {
 	destroy(todoId, successFn, errorFn) {
 		TodoModel.update({id: todoId, deleted: true}, successFn, errorFn);
 	}
-}
+};
 
 export function signUp(email, username, password, successFn, errorFn) {
 	var user = new AV.User();

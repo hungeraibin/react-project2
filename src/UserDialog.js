@@ -33,7 +33,12 @@ export default class UserDialog extends Component {
 					break
 			}
 		}
-		signUp(email, username, password, success, error);
+		if (username.length > 3 && password.length > 5) {
+			signUp(email, username, password, success, error);
+		} else {
+			alert('验证：用户名必须大于3位，密码必须大于5位');
+		}
+
 	}
 
 	signIn(e) {

@@ -2,9 +2,25 @@
   padding: .5em;
   display: flex;
   align-items: center;
+  margin-top: .2em;
 }
 
 .TodoItem > .title {
   flex-grow: 1;
   padding: 0 .5em;
+}
+
+.TodoItem button {
+  min-width: 4em;
+  min-height: 2em;
+  color: white;
+  background-color: #ff4d3a;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  border-radius: 4px;
+}
+
+.TodoItem button:hover {
+  opacity: 1;
 }
