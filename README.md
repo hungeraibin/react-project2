@@ -6,12 +6,15 @@
 - 技术细节：使用create-react-app初始化项目，使用ES6语法。组件上划分上，遵循单一原则封装更多的组件。使用LeanCloud实现表单的登录、注册功能，存储用户数据。
 - 技术栈：React，ES6，LeanCloud
 
-## build
+## Build Setup
 
-```
-create-react-app . 
+``` bash
+# install dependencies
+npm install
 
-npm start
+# serve with hot reload at localhost:3000
+npm satrt
 
+# build for production with minification
 npm run build
 ```
